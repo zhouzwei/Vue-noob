@@ -31,7 +31,7 @@ export default{
 					posIcon:require('../assets/images/pos/pos-icon01.png'),
 					h3:'标题一',
 					p:'内容介绍一',
-					pathed:'TabItem1'
+					pathed:'TodoMvc'
 				},
 				{
 					posIcon:require('../assets/images/pos/pos-icon02.png'),

@@ -63,19 +63,21 @@ export default{
 			//this.calculatePrice();		 
 		},
 		calculatePrice(){
-			var phone_charge = document.getElementsByClassName('phone_charge')
+			var phone_charge = document.getElementsByClassName('phone_charge');
 			for(var i=0;i<phone_charge.length;i++){
-				this.submitPrice = this.items[i].discountPrice
+				this.submitPrice = this.items[i].discountPrice;
 			}
 		},
 		submitBtn(){		
 			if(!this.iphone_reg.test(this.handleInput)){
-				alert('号码有误!')
+				alert('号码有误!');
 				return
 			}else if(this.currentIndex < 1){
-				alert('请选择话费充值额!')
+				alert('请选择话费充值额!');
+				return
 			}else{
-				alert('充值成功了')
+				alert('充值成功了');
+				return
 			}
 		}
 		

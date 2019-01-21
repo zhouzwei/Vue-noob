@@ -59,11 +59,44 @@ export default{
 			var checkboxBtn = document.getElementsByClassName('checkboxBtn');
 			if(checkboxBtn[index].checked){
 				this.items.splice(index,1);
-				checkboxBtn[index].checked = false;
-				for(var i=0;i<checkboxBtn.length;i++){
-					checkboxBtn[i].checked = false;
-					delet_btn[i].style.display = 'none';
+				//checkboxBtn[index].checked = false;
+				//delet_btn[index].style.display = 'none';
+				if(index > 0){
+					var indexDif = index - 0;
+					for(var j=0;j<indexDif;j++){
+						if(checkboxBtn[j].checked){
+							checkboxBtn[j].checked = true
+							delet_btn[j].style.display = 'block'
+						}else if(!checkboxBtn[j].checked){
+							checkboxBtn[j].checked = false;
+							delet_btn[j].style.display = 'none'
+						}						
+					}
+					for(var i=index;i<checkboxBtn.length-index;i++){
+						if(checkboxBtn[i].checked){
+							console.log(1)
+							checkboxBtn[i].checked = true;
+							delet_btn[i].style.display = 'block';
+							checkboxBtn[index+1].checked = false;
+							delet_btn[index+1].style.display = 'none';
+						}else if(!checkboxBtn[i].checked){
+							console.log(11)
+							checkboxBtn[index].checked = false;
+							delet_btn[index].style.display = 'none';
+						}
+						//checkboxBtn[i].checked = false;
+						//delet_btn[i].style.display = 'none';
+					}
+					
+				}else{
+					for(var i=0;i<checkboxBtn.length;i++){
+						checkboxBtn[i].checked = false;
+						delet_btn[i].style.display = 'none';
+					}
 				}
+				
+				
+				
 			}			
 		}
 		

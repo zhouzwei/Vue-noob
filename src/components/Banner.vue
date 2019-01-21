@@ -101,7 +101,8 @@ export default{
 .banner_page:nth-of-type(1){
 	z-index: 2;
 	background:blue;
-}.banner_page:nth-of-type(2){
+}
+.banner_page:nth-of-type(2){
 	background:greenyellow;
 }
 .banner_page:nth-of-type(3){
