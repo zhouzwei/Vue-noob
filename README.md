@@ -1,3 +1,6 @@
+自己随便写的，有手机端也有pc端（后面带有pc的就是pc端），适合新手（刚入门并且有一定js基础者）
+
+
 # my-app-vue
 
 > A Vue.js project
