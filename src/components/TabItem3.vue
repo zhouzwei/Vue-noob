@@ -43,7 +43,7 @@ export default{
 					posIcon:require('../assets/images/pos/pos-icon03.png'),
 					h3:'标题三',
 					p:'内容介绍三',
-					pathed:'TabItem3'
+					pathed:'City'
 				},
 				{
 					posIcon:require('../assets/images/pos/pos-icon04.png'),

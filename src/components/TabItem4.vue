@@ -33,7 +33,7 @@ export default{
 			showAddress:false,
 			handleInput:'',
 			iphone_reg:/^1[3|4|5|7|8][0-9]{9}$/,
-			currentIndex:0,
+			currentIndex:-1,
 			submitPrice:0,
 			items:[
 				{sourePrice:'10',discountPrice:'9.9'},
@@ -47,20 +47,17 @@ export default{
 	},
 	methods:{
 		handleInputs(){
-			//console.log(this.handleInput)
 			if(this.iphone_reg.test(this.handleInput)){
 				this.showAddress = true;
 				return
 			}else{
 				this.showAddress = false;
-				//alert('号码有误!')
 				return
 			}
 		},
 		handleChange(index){
 			this.currentIndex = index;
-			this.submitPrice = this.items[index].discountPrice;
-			//this.calculatePrice();		 
+			this.submitPrice = this.items[index].discountPrice;		 
 		},
 		calculatePrice(){
 			var phone_charge = document.getElementsByClassName('phone_charge');

@@ -15,6 +15,10 @@ import Slide from '@/components/Slide'
 import IndexPc2 from '@/components/IndexPc2'
 import IndexPc3 from '@/components/IndexPc3'
 import News from '@/components/News'
+import TodoMvc from '@/components/TodoMvc'
+import City from '@/components/City'
+
+
 
 
 
@@ -53,6 +57,16 @@ export default new Router({
 	      path: '/TabItem5',
 	      name: 'TabItem5',
 	      component: TabItem5
+	    },
+	    {
+	      path: '/City',
+	      name: 'City',
+	      component: City
+	    },
+	    {
+	      path: '/TodoMvc',
+	      name: 'TodoMvc',
+	      component: TodoMvc
 	    },
 	    {
 	      path: '/News',

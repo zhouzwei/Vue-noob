@@ -161,7 +161,7 @@ export default{
 			for(var i=0;i<goodsIpt.length;i++){
 				if(goodsIpt[i].checked){
 					//console.log(this.goodsList.length)
-					this.totalPrice +=  Math.round((this.goodsList[i].goodsNum * this.goodsList[i].goodsPrice)*100)/100;
+					this.totalPrice += Math.round((this.goodsList[i].goodsNum * this.goodsList[i].goodsPrice)*100)/100;
 					this.totalCount += parseInt(this.goodsList[i].goodsNum); 
 				}
 			}

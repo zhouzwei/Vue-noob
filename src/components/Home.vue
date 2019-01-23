@@ -123,12 +123,12 @@ export default {
 				},"300");
 				setInterval(function(){
 					//$('.horn').removeClass('jitter')
-					horn.classList.remove('jitter')
+					horn.classList.remove('jitter');
 				},"5000");
 			}else{
 				setInterval(function(){
 					//$('.horn').removeClass('jitter')
-					horn.classList.remove('jitter')
+					horn.classList.remove('jitter');
 				},"300");
 			}
 			
