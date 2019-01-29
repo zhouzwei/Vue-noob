@@ -11,10 +11,27 @@
 		<button class="search_btn" @click="cancelBtn">取消</button>
 	</section>
 	<section class="content_box">
+		<!-- 当前城市  -->
 		<section class="current_city_box">
 			<section class="current_city_title">当前城市</section>
 			<section class="current_city">{{currentCity}}</section>
 		</section>
+		<!-- 历史选择城市  -->
+		<section class="history_city_box">
+			<section class="history_city_title">历史访问城市</section>
+			<section class="history_city">
+				<ol class="clearfix">
+					<li 
+						class="history_city_li"
+						v-for="(historyCity,index) in historyCitys"
+						:key="index"
+						@click="handleHistoryCity(index)"
+					>{{historyCity}}
+					</li>
+				</ol>
+			</section>
+		</section>
+		<!-- 热门城市  -->
 		<section class="hot_city_box">
 			<section class="hot_city_title">热门城市</section>
 			<section class="hot_city">
@@ -24,8 +41,7 @@
 						v-for="(hotCity,index) in hotCitys"
 						:key="index"
 						@click="handleHotCity(index)"
-					>
-						{{hotCity.hotCityTxt}}
+					>{{hotCity.hotCityTxt}}
 					</li>
 				</ol>
 			</section>
@@ -39,8 +55,7 @@
 			v-for="(item,index) in items"
 			:key="index"
 			@click="citySelect(index)"
-		>
-			{{item.citytxt}}
+		>{{item.citytxt}}
 		</li>
 	</ul>
 	<!-- 右侧26个字母 -->
@@ -50,8 +65,7 @@
 			v-for="(page,index) in pages"
 			:key="index"
 			@click="handleAlphabet(index)"
-		>
-			{{page}}
+		>{{page}}
 		</section>
 	</section>
 	
@@ -69,12 +83,14 @@ export default{
 			citys:[
 				
 			],
+			historyCitys:[],
 			hotCitys:[
 				{hotCityTxt:'北京'},
 				{hotCityTxt:'上海'},
 				{hotCityTxt:'广州'},
-				{hotCityTxt:'深圳深圳深圳深圳深圳深圳深圳深圳'},
-				{hotCityTxt:'杭州杭州杭州杭州杭州杭州杭州杭州杭州杭州'}
+				{hotCityTxt:'深圳'},
+				{hotCityTxt:'杭州'},
+				{hotCityTxt:'南昌'}
 			],
 			pages:['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 		}
@@ -93,6 +109,8 @@ export default{
 		},
 		citySelect(index){  // 城市列表选择
 			this.currentCity = this.items[index].citytxt.split("市")[0];    //  split 把字符串切割成数组
+			this.historyCitys.unshift(this.currentCity);
+			this.heavy();
 			this.searchInput = '';
 			this.showCitys = false;
 		},
@@ -102,16 +120,32 @@ export default{
 		},
 		handleHotCity(index){  // 热门城市
 			this.currentCity = this.hotCitys[index].hotCityTxt;
+			this.historyCitys.unshift(this.currentCity);
+			this.heavy();
 		},
-		handleAlphabet(index){
+		handleHistoryCity(index){ // 历史访问城市点击事件
+			this.currentCity = this.historyCitys[index];
+			this.historyCitys.unshift(this.currentCity);
+			this.heavy();
+		},
+		handleAlphabet(index){  // 右侧26个字母点击事件
 			console.log(this.pages[index]);
+		},
+		heavy(){  // 数组去重
+			if(this.historyCitys.length > 1){
+				var arr = this.historyCitys
+				this.historyCitys = Array.from(new Set(arr));
+			}
+			if(this.historyCitys.length > 3){
+				this.historyCitys.length = 3
+			}
 		}
 	},
 	computed:{   // 计算城市属性，匹配城市关键字
 		items:function(index){
 			var arry=[];
 			for( var i=0;i<this.citys.length;i++ ){
-				if( this.citys[i].citytxt.search(this.searchInput) != -1 ){     // 匹配关键字 -1
+				if( this.citys[i].citytxt.search(this.searchInput) != -1 ){   // 匹配关键字 -1
 					arry.push(this.citys[i]);
 				}				
 			}
@@ -176,6 +210,26 @@ export default{
 	font-size: 0.56rem;
 	line-height: 1.76rem;
 	padding: 0 0.4rem;
+}
+.history_city_title{
+	padding: 0 0.4rem;
+	font-size: 0.48rem;
+	line-height: 0.96rem;
+}
+.history_city{
+	height: 1.76rem;
+	line-height: 1.76rem;
+	background: #fff;
+	padding: 0 0.4rem;
+	overflow: hidden;
+}
+.history_city_li{
+	width: 33.33%;
+	height: 1.76rem;
+	float: left;
+	font-size: 0.56rem;
+	padding: 0 0.2rem;
+	box-sizing: border-box;
 }	
 .hot_city_title{
 	padding: 0 0.4rem;
@@ -184,6 +238,7 @@ export default{
 }
 .hot_city{
 	padding: 0.2rem 0.4rem;
+	border-bottom: 1px solid #eee;
 	box-sizing: border-box;
 	background: #fff;
 }

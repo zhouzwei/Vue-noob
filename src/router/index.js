@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/components/Login'
+import Regs from '@/components/Regs'
+import Forget from '@/components/Forget'
 import Home from '@/components/Home'
 import TabItem1 from '@/components/TabItem1'
 import TabItem2 from '@/components/TabItem2'
@@ -28,6 +31,20 @@ export default new Router({
 	mode: 'history',    //切换路径模式，变成history模式
 	scrollBehavior: () => ({ y: 0 }), // 滚动条滚动的行为，不加这个默认就会记忆原来滚动条的位置
 	routes: [
+		{
+	      path: '/Login',
+	      name: 'Login',
+	      component: Login
+	    },
+	    {
+	      path: '/Regs',
+	      name: 'Regs',
+	      component: Regs
+	    },{
+	      path: '/Forget',
+	      name: 'Forget',
+	      component: Forget
+	    },
 	    {
 	      path: '/Home',
 	      name: 'Home',
@@ -115,7 +132,7 @@ export default new Router({
 	    },
 	    {
 		   path: '/',
-		   redirect: '/Home'       //重定向到哪个页面设置
+		   redirect: '/Login'       //重定向到哪个页面设置
 		}
   	]
 })
