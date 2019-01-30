@@ -4,6 +4,7 @@
 	<UserName @user-name="userName"></UserName>
 	<VCode @v-code="vCode"></VCode>
 	<UserPassword @user-password="userPassword"></UserPassword>
+	<AgainUserPassword @againuser-password="againUserpassword"></AgainUserPassword>
 	<!-- 提示语  -->
 	<section class="tip" v-show="tipShow">{{tipTxt}}</section>
 	<section class="login_btn" @click="LoginBtn">确定</section>
@@ -14,7 +15,7 @@
 import	UserName from './input/UserName.vue'
 import	UserPassword from './input/UserPassword.vue'
 import	VCode from './input/Vcode.vue'
-
+import	AgainUserPassword from './input/AgainUserPassword.vue'
 
 	
 export default{
@@ -32,7 +33,8 @@ export default{
 	components:{
 		UserName,
 		UserPassword,
-		VCode
+		VCode,
+		AgainUserPassword
 	},
 	methods:{
 		userName(uName){  // 用户名-手机号码
@@ -55,10 +57,35 @@ export default{
 			if(this.userPasswords !==''){
 				this.tipShow = false;
 				this.tipTxt = '';
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '密码错误';
+				return
+			}
+		},
+		againUserpassword(value){ // 再次输入密码
+			this.againUserPasswords = value;
+			if(this.againUserPasswords!==this.userPasswords){
+				this.tipShow = true;
+				this.tipTxt = '两次密码输入不一致';
+				return
+			}else{
+				this.tipShow = false;
+				this.tipTxt = '';
+				return
 			}
 		},
 		vCode(vcode){  // 验证码
 			this.vCodes = vcode;
+			if(this.vCodes !==''||this.vCodes !==null){
+				this.tipShow = false;
+				this.tipTxt = '';
+				return
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '验证码错误';
+				return
+			}
 		},
 		LoginBtn(){  // 登录按钮
 			if(this.userNames==='' || this.userNames===null){
@@ -70,9 +97,17 @@ export default{
 			}else if(this.vCodes==='' || this.vCodes.length!==6){
 				this.tipShow = true;
 				this.tipTxt = '验证码错误';
-			}else if(this.userPasswords ===''){
+			}else if(this.userPasswords ===''||this.userPasswords===null){
 				this.tipShow = true;
 				this.tipTxt = '密码错误';
+			}else if(this.againUserPasswords===''||this.againUserPasswords===null){
+				this.tipShow = true;
+				this.tipTxt = '密码不为空';
+				return
+			}else if(this.againUserPasswords!==this.userPasswords){
+				this.tipShow = true;
+				this.tipTxt = '两次输入密码不一致';
+				return
 			}else{
 				this.$router.push({path:"/Login"});
 				this.tipShow = false;

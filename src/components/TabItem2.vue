@@ -110,7 +110,7 @@ export default{
 			this.showBox = true;
 			this.curProduct = goods;
 		},
-		deletBtnBox(way){
+		deletBtnBox(way){  // 删除弹窗 再次确定是否要删除
 			var index = this.goodsList.indexOf(this.curProduct);
 			if(way>0){
 				//this.goodsList[index].checked = false

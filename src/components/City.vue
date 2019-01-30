@@ -230,6 +230,9 @@ export default{
 	font-size: 0.56rem;
 	padding: 0 0.2rem;
 	box-sizing: border-box;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }	
 .hot_city_title{
 	padding: 0 0.4rem;
@@ -253,7 +256,7 @@ export default{
 	box-sizing: border-box;
 	overflow:hidden;
     text-overflow:ellipsis;
-    white-space:nowrap
+    white-space:nowrap;
 }
 /* 所有城市列表  */
 .all_citys_list{

@@ -55,6 +55,7 @@ export default{
 }
 .form-group input:focus{
 	border: 1px solid #333;
-	box-shadow: 0px 0px 1px #ADFF2F;
+	box-shadow: 0px 0px 3px 1px #ADFF2F;
+	border-radius: 0.12rem;
 }
 </style>

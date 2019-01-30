@@ -36,7 +36,7 @@ export default{
 			currentIndex:-1,
 			submitPrice:0,
 			items:[
-				{sourePrice:'10',discountPrice:'9.9'},
+				{sourePrice:'10',discountPrice:'9.9'},    // discountPrice 优惠价、售后价
 				{sourePrice:'20',discountPrice:'19.8'},
 				{sourePrice:'50',discountPrice:'49.5'},
 				{sourePrice:'100',discountPrice:'199.9'},
@@ -67,13 +67,13 @@ export default{
 		},
 		submitBtn(){		
 			if(!this.iphone_reg.test(this.handleInput)){
-				alert('号码有误!');
+				alert('手机号码错误，请仔细查看!');
 				return
-			}else if(this.currentIndex < 1){
+			}else if(this.currentIndex < 0){
 				alert('请选择话费充值额!');
 				return
 			}else{
-				alert('充值成功了');
+				alert('充值成功了!');
 				return
 			}
 		}

@@ -41,11 +41,10 @@ export default{
 			//var iphoneTxt = $('#userName').val();
 			var iphoneTxt = document.getElementById('userName').value;
 			if(iphoneTxt==='' || iphoneTxt===null){
-				alert('电话号码不能为空');
+				alert('电话号码不能为空!');
 			}else if(!this.iphone_reg.test(iphoneTxt)){
-				alert('手机号码有误');
+				alert('手机号码有误!');
 			}else{
-				//localStorage.sitename = '';
 				const TIME_COUNT = this.num;
 				if(!this.timer){ 
 					this.count = TIME_COUNT;
@@ -110,7 +109,8 @@ export default{
 }
 .form-group input:focus{
 	border: 1px solid #333;
-	box-shadow: 0px 0px 1px #ADFF2F;
+	box-shadow: 0px 0px 3px 1px #ADFF2F;
+	border-radius: 0.12rem;
 }
 
 </style>

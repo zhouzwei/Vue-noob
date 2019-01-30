@@ -27,7 +27,7 @@ export default{
 		return{
 			tipTxt:"提示语",
 			tipShow:false,
-			iphone_reg:/^1[3|4|5|7|8][0-9]{9}$/,    //  判断手机号码
+			iphone_reg:/^1[3|4|5|7|8][0-9]{9}$/,  // 判断手机号码
 			userNames:'',     // 手机号码
 			vCodes:'',    // 验证码
 			userPasswords:'',   // 密码
@@ -48,7 +48,7 @@ export default{
 				return
 			}else if(!this.iphone_reg.test(uName)){
 				this.tipShow = true;
-				this.tipTxt = '手机号码格式错误'
+				this.tipTxt = '手机号码格式错误';
 				return
 			}else{
 				this.tipShow = false;
@@ -59,14 +59,27 @@ export default{
 		},
 		userPassword(userpassword){  // 密码
 			this.userPasswords = userpassword;
-			if(this.userPasswords !==''){
+			if(this.userPasswords !==''||this.userPasswords !==null){
 				this.tipShow = false;
 				this.tipTxt = '';
+				return
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '密码错误';
 				return
 			}
 		},
 		vCode(vcode){  // 验证码
 			this.vCodes = vcode;
+			if(this.vCodes !==''||this.vCodes !==null){
+				this.tipShow = false;
+				this.tipTxt = '';
+				return
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '验证码错误';
+				return
+			}
 		},
 		LoginBtn(){  // 登录按钮
 			if(this.userNames==='' || this.userNames===null){
@@ -81,7 +94,7 @@ export default{
 				this.tipShow = true;
 				this.tipTxt = '验证码错误';
 				return
-			}else if(this.userPasswords ===''){
+			}else if(this.userPasswords ===''||this.userPasswords===null){
 				this.tipShow = true;
 				this.tipTxt = '密码错误';
 				return

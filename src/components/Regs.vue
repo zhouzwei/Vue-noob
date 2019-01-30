@@ -6,6 +6,7 @@
 	<Email @e-mail="Emails"></Email>
 	<IDcard @id-cards="IDCard"></IDcard>
 	<UserPassword @user-password="userPassword"></UserPassword>
+	<AgainUserPassword @againuser-password="againUserpassword"></AgainUserPassword>
 	<!-- 提示语  -->
 	<section class="tip" v-show="tipShow">{{tipTxt}}</section>
 	<section class="regs_btn_box">
@@ -17,10 +18,11 @@
 
 <script>
 import	UserName from './input/UserName.vue'
-import	UserPassword from './input/UserPassword.vue'
 import	VCode from './input/Vcode.vue'	
 import	Email from './input/Email.vue'
-import	IDcard from './input/IDcard.vue'	
+import	IDcard from './input/IDcard.vue'
+import	UserPassword from './input/UserPassword.vue'
+import	AgainUserPassword from './input/AgainUserPassword.vue'	
 	
 	
 	
@@ -36,6 +38,7 @@ export default{
 			userNames:'',      // 手机号码                               
 			vCodes:'',    // 验证码
 			userPasswords:'',  // 密码
+			againUserPasswords:'',  // 再次输入密码
 			eMails:'',   // 邮箱
 			idCards:'',     // 身份证号码
 			len:6    // 字符长度
@@ -46,7 +49,8 @@ export default{
 		UserPassword,
 		VCode,
 		Email,
-		IDcard
+		IDcard,
+		AgainUserPassword
 	},	
 	methods:{
 		userName(uName){  // 用户名-手机号码
@@ -69,7 +73,23 @@ export default{
 		},
 		userPassword(userpassword){  // 密码
 			this.userPasswords = userpassword;
-			if(this.userPasswords !==''){
+			if(this.userPasswords !==''||this.userPasswords !==null){
+				this.tipShow = false;
+				this.tipTxt = '';
+				return
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '密码错误';
+				return
+			}
+		},
+		againUserpassword(value){ // 再次输入密码
+			this.againUserPasswords = value;
+			if(this.againUserPasswords!==this.userPasswords){
+				this.tipShow = true;
+				this.tipTxt = '两次密码输入不一致';
+				return
+			}else{
 				this.tipShow = false;
 				this.tipTxt = '';
 				return
@@ -77,6 +97,15 @@ export default{
 		},
 		vCode(vcode){  // 验证码
 			this.vCodes = vcode;
+			if(this.vCodes !==''||this.vCodes !==null){
+				this.tipShow = false;
+				this.tipTxt = '';
+				return
+			}else{
+				this.tipShow = true;
+				this.tipTxt = '验证码错误';
+				return
+			}
 		},
 		Emails(value){  // 邮箱
 			this.eMails = value;
@@ -146,6 +175,14 @@ export default{
 			}else if(this.userPasswords===''||this.userPasswords===null){
 				this.tipShow = true;
 				this.tipTxt = '密码不为空';
+				return
+			}else if(this.againUserPasswords===''||this.againUserPasswords===null){
+				this.tipShow = true;
+				this.tipTxt = '密码不为空';
+				return
+			}else if(this.againUserPasswords!==this.userPasswords){
+				this.tipShow = true;
+				this.tipTxt = '两次输入密码不一致';
 				return
 			}else{
 				this.tipShow = false;

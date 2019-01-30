@@ -1,13 +1,13 @@
 <template>
 <section class="form-group">
-	<label for="userPassword">输入密码:</label>
+	<label for="againuserPassword">再输入密码:</label>
 	<input 
 		type="password" 
 		v-model.trim="passwords" 
 		@keyup="userPassword" 
 		ref="password" 
-		id="userPassword" 
-		placeholder="密码" 
+		id="againuserPassword" 
+		placeholder="再次输入密码" 
 		maxlength="21"
 	/>
 	<em class="disvisual" v-show="visible" @click="disvisual"></em>
@@ -25,15 +25,15 @@ export default{
 	},
 	methods:{
 		userPassword(){
-			this.$emit('user-password', this.passwords);
+			this.$emit('againuser-password', this.passwords);
 		},
 		disvisual(){
-			this.visible = false
-			document.getElementById('userPassword').setAttribute('type','text');
+			this.visible = false;
+			document.getElementById('againuserPassword').setAttribute('type','text');
 		},
 		visual(){
-			this.visible = true
-			document.getElementById('userPassword').setAttribute('type','password');
+			this.visible = true;
+			document.getElementById('againuserPassword').setAttribute('type','password');
 		}
 	}
 }
@@ -93,6 +93,5 @@ export default{
 	right: 2rem;
 	top: 50%;
 	margin-top: -0.4rem;
-}
-	
+}	
 </style>

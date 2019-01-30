@@ -97,6 +97,9 @@ export default{
 	margin-left: 0.4rem;
 	font-size: 0.72rem;
 	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }	
 .completed span{
 	color: #999;
