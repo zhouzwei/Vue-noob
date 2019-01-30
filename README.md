@@ -4,6 +4,12 @@
 
 3.PosBuy.vue使用的是vuex写法
 
+4.todomvc方法
+
+5.banner图的使用以及图片的无缝滚动
+
+6.API的简单使用方法（axios）
+
 
 # my-app-vue
 
