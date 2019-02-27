@@ -1,26 +1,32 @@
 <template>
 	<div>
-		<p class="tltle">计算器</p>
-		<section class="compute_box">
-			<input type="text" class="compute_ipt" @keypress="handleKeyUp(-1)" v-model.trim="ipt1" />
-			<input type="text" class="compute_add_ipt" disabled="disabled" value="+" />
-			<input type="text" class="compute_ipt" @keypress="handleKeyUp(1)" v-model.trim="ipt2" />
-			<input type="text" class="compute_add_ipt" disabled="disabled" value="=" />
-			<input type="text" class="compute_add_ipt" disabled="disabled" :value="val" />
-			
+		<p class="tltle">超出手动可以滑动的导航栏</p>
+		<section class="swiper_slide_nav">
+			<section class="canopy"></section>
+		    <div class="swiper-container swiper1">
+		        <div class="swiper-wrapper">
+		            <!--<div class="swiper-slide selected"><a href="near_classify_1.html">美食</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">电影</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">酒店</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">旅行</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">休闲娱乐</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">丽人</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">运动健身</a></div>
+		            <div class="swiper-slide"><a href="javascript:;">宠物</a></div>-->
+		            <div
+		            	class="swiper-slide"
+		            	:class="{selected:current === index}"
+		            	v-for="(item,index) in items"
+		            	:key="index"
+		            >
+		            	<router-link tag="a" :to="{ path:'/'+item.pathed }">
+		            		{{item.itemTxt}}
+		            	</router-link>
+		            </div>
+		        </div>
+		    </div>
 		</section>
-		<section class="count_btn_box">
-			<ul>
-				<li
-					class="count_btn"
-					v-for="(count,index) in counts"
-					:key="index"
-					@click="handleChangeLi(index)"
-				>
-					{{count.countTxt}}
-				</li>
-			</ul>
-		</section>
+		
 	</div>
 </template>
 
@@ -29,40 +35,92 @@ export default{
 	name: 'TabItem1',
 	data(){
 		return{
-			ipt1:'',
-			ipt2:'',
-			val:'',
-			counts:[
-				{countTxt:'1'},
-				{countTxt:'2'},
-				{countTxt:'3'},
-				{countTxt:'4'},
-				{countTxt:'5'},
-				{countTxt:'6'},
-				{countTxt:'7'},
-				{countTxt:'8'},
-				{countTxt:'9'},
-				{countTxt:'清空'},
-				{countTxt:'0'},
-				{countTxt:'确定'},
+			current:0,
+			items:[
+				{
+					itemTxt:'美食',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'电影',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'酒店',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'旅行',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'休闲娱乐',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'丽人',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'运动健身',
+					pathed:'TabItem1'
+				},
+				{
+					itemTxt:'宠物',
+					pathed:'TabItem1'
+				}
 			]
 		}
 	},
 	methods:{
-		handleKeyUp(way){
-			if(way>0){
-				this.handleChangeLi()
-			}else{
-				console.log(1)
-			}			
-			
-		},
-		handleChangeLi(index){
-			console.log(index)
-			if(index === 11){
-				this.val = this.ipt1 + this.ipt2
-			}
+		swiper(){
+			function setCurrentSlide(ele, index) {
+		        $(".swiper1 .swiper-slide").removeClass("selected");
+		        ele.addClass("selected");
+		        //swiper1.initialSlide=index;
+		    }
+		
+		    var swiper1 = new Swiper('.swiper1', {
+		        // 设置slider容器能够同时显示的slides数量(carousel模式)。
+		        // 可以设置为number或者 'auto'则自动根据slides的宽度来设定数量。
+		        // loop模式下如果设置为'auto'还需要设置另外一个参数loopedSlides。
+		        slidesPerView: 4.5,
+		        paginationClickable: true,    //此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。
+		        spaceBetween: 0,              //slide之间的距离（单位px）。
+		        freeMode: true,               //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动且不会贴合。
+		        loop: false,                  //是否可循环
+		        onTab: function(swiper) {
+		            var n = swiper1.clickedIndex;
+		        }
+		    });
+		    swiper1.slides.each(function(index, val) {
+		        var ele = $(this);
+		        ele.on("click", function() {
+		            setCurrentSlide(ele, index);
+		            switch(index){
+		            	case 4:
+		            		$('.swiper-wrapper').css({'transform':'translate3d(-9.94404rem, 0px, 0px)'});
+		            		break;
+		            	case 5:
+		            		$('.swiper-wrapper').css({'transform':'translate3d(-11.50404rem, 0px, 0px)'});
+		            		break;
+		            	case 6:
+		            		$('.swiper-wrapper').css({'transform':'translate3d(-11.50404rem, 0px, 0px)'});
+		            		break;
+		            	case 7:
+		            		$('.swiper-wrapper').css({'transform':'translate3d(-11.50404rem, 0px, 0px)'});
+		            		break;
+		            	default:
+		            		$('.swiper-wrapper').css({'transform':'translate3d(-0rem, 0px, 0px)'});
+		            }
+		            //swiper2.slideTo(index, 500, false);
+		            //mySwiper.initialSlide=index;
+		        });
+		    });
 		}
+	},
+	mounted(){
+		this.swiper()
 	}
 }
 </script>
@@ -75,54 +133,53 @@ export default{
 	text-align: center;
 	line-height: 35px;
 }
-.compute_box{
-	padding: 35px 50px 240px;
-}
-.compute_box input{	
-	width: 100%;
-	display: block;	
-	margin-top: 10px;
-	border: 1px solid #ccc;
-	outline: none;
-	padding: 0 5px;
-	text-align: center;
-	height: 35px;
-	line-height: 35px;	
-	box-sizing: border-box;
-	font-size: 16px;
-}
-.compute_box .compute_add_ipt{
-	font-size: 26px;
-	color: #f40;
-}
-.compute_ipt{
-}
-
-.count_btn_box{
-	width: 100%;
-	height: 240px;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-}
-.count_btn{
-	width: 33.33%;
-	height: 60px;
-	background: #FAB08D;
-	color: #fff;
-	font-size: 20px;
-	text-align: center;
-	line-height: 60px;
-	float: left;
-	border-left: 1px solid #fff;
-	border-top: 1px solid #fff;
+.swiper_slide_nav{
+	width:100%;
+	height:2rem;
+	background:#fff;
+	margin-bottom: 15px;
+	position:relative;
+	border-bottom: 2px solid #e6e6e6;
 	box-sizing: border-box;
 }
-.count_btn:nth-of-type(3n+1){
-	border-left:none;
+.canopy{
+	width: 100%;
+	height:0.4rem;
+	position:absolute;
+	left:0;
+	top:0;
+	background:#fff;
+	z-index: 3;
 }
-
-
+.swiper-container{
+	overflow: hidden;
+}
+.swiper-wrapper{
+	width:1000rem;
+	height:2rem;
+	position:relative;
+}
+.swiper-slide{
+	width:3.1rem;
+	float:left;
+	text-align: center;
+	font-size: 0.6rem;
+	color:#888;
+	line-height: 2rem;
+	border-right: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	position:relative;
+	z-index: 2;
+}
+.swiper1 .selected {
+    height:2rem;
+    color: #2086eb;
+    border-bottom: 2px solid #2086eb;
+    box-sizing: border-box;
+}
+.swiper1 .selected a{
+	color: #2086eb;
+}
 
 
 

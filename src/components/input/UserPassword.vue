@@ -1,6 +1,6 @@
 <template>
 <section class="form-group">
-	<label for="userPassword">输入密码:</label>
+	<label for="userPassword" id="lable-userPassword">输入密码:</label>
 	<input 
 		type="password" 
 		v-model.trim="passwords" 
@@ -17,6 +17,7 @@
 
 <script>
 export default{
+	props:[],
 	data(){
 		return{
 			passwords:"",

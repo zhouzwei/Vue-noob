@@ -39,7 +39,7 @@
 				<div class="swiper-container">
 					<div class="swiper-wrapper" >
 						<div 
-							class="swiper-slide" 
+							class="swiper-slide"
 							v-for="(item,index) in items"
 							:key="index"
 						>

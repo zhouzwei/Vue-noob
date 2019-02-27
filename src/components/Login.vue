@@ -31,7 +31,7 @@ export default{
 			userNames:'',     // 手机号码
 			vCodes:'',    // 验证码
 			userPasswords:'',   // 密码
-			len:6   // 字符长度
+			len:6   // 验证码字符长度
 		}
 	},
 	components:{
@@ -40,6 +40,7 @@ export default{
 		VCode
 	},
 	methods:{
+		
 		userName(uName){  // 用户名-手机号码
 			this.userNames = uName;
 			if(uName===''||uName===null){
@@ -52,8 +53,8 @@ export default{
 				return
 			}else{
 				this.tipShow = false;
-				this.tipTxt = '',
-				localStorage.sitename = uName;
+				this.tipTxt = '';
+				//localStorage.sitename = uName;
 				return
 			}
 		},
@@ -96,14 +97,14 @@ export default{
 				return
 			}else if(this.userPasswords ===''||this.userPasswords===null){
 				this.tipShow = true;
-				this.tipTxt = '密码错误';
+				this.tipTxt = '密码不为空';
 				return
 			}else{
 				this.$router.push({path:"/Home"});
 				this.tipShow = false;
 				this.tipTxt = '';
 				return
-			}
+			}                    
 		},
 		ForgetBtn(){  // 忘记密码按钮
 			this.$router.push({path:"/Forget"});
@@ -111,6 +112,9 @@ export default{
 		GoRegsBtn(){   // 马上注册按钮
 			this.$router.push({path:"/Regs"});
 		}
+	},
+	mounted(){
+		
 	}
 }
 </script>

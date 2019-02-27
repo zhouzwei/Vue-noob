@@ -3,7 +3,7 @@
 	<section style="text-align: center;margin: 5px 0;">Forget</section>
 	<UserName @user-name="userName"></UserName>
 	<VCode @v-code="vCode"></VCode>
-	<UserPassword @user-password="userPassword"></UserPassword>
+	<UserPassword @user-password="userPassword" ></UserPassword>
 	<AgainUserPassword @againuser-password="againUserpassword"></AgainUserPassword>
 	<!-- 提示语  -->
 	<section class="tip" v-show="tipShow">{{tipTxt}}</section>
@@ -37,6 +37,7 @@ export default{
 		AgainUserPassword
 	},
 	methods:{
+		
 		userName(uName){  // 用户名-手机号码
 			this.userNames = uName;
 			if(uName===''||uName===null){
@@ -114,7 +115,13 @@ export default{
 				this.tipTxt = '';
 			}
 		}
+	},
+	
+	mounted(){
+		
 	}
+	
+	
 }
 </script>
 

@@ -22,9 +22,9 @@ export default{
 			Vcodes:"",
 			yzm_txt:"获取验证码",
 			show_code:true,
-			count:'',
-			iphone_reg:/^1[3|4|5|7|8][0-9]{9}$/,
-			num:10
+			count:'',     // 倒计时时间
+			iphone_reg:/^1[3|4|5|7|8][0-9]{9}$/,  // 手机号码正则判断
+			num:60    // 倒计时时间
 		}
 	},
 	methods:{
@@ -42,8 +42,10 @@ export default{
 			var iphoneTxt = document.getElementById('userName').value;
 			if(iphoneTxt==='' || iphoneTxt===null){
 				alert('电话号码不能为空!');
+				return
 			}else if(!this.iphone_reg.test(iphoneTxt)){
 				alert('手机号码有误!');
+				return
 			}else{
 				const TIME_COUNT = this.num;
 				if(!this.timer){ 

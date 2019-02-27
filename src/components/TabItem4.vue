@@ -68,12 +68,14 @@ export default{
 		submitBtn(){		
 			if(!this.iphone_reg.test(this.handleInput)){
 				alert('手机号码错误，请仔细查看!');
+				this.$router.push({path:"/Rate"});
 				return
 			}else if(this.currentIndex < 0){
 				alert('请选择话费充值额!');
 				return
 			}else{
 				alert('充值成功了!');
+				this.$router.push({path:"/PullRefresh"});				
 				return
 			}
 		}

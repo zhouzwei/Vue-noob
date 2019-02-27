@@ -37,17 +37,15 @@ export default{
 	},
 	methods:{
 		
-		seletedCheckbox(item,index){
+		seletedCheckbox(item,index){   //  是否选中当前选项（是否打钩）
 			var delet_btn = document.getElementsByClassName('delet_btn');
 			var checkboxBtn = document.getElementsByClassName('checkboxBtn');
 			for(var i=0;i<checkboxBtn.length;i++){
 				this.checked = !this.checked
 				if(checkboxBtn[i].checked){
 					delet_btn[i].style.display = 'block';
-					//console.log(checkboxBtn[i].checked,1)
 				}else{
 					delet_btn[i].style.display = 'none';
-					//console.log(checkboxBtn[i].checked,2)
 				}
 			}
 		},
@@ -58,29 +56,27 @@ export default{
 			var delet_btn = document.getElementsByClassName('delet_btn');
 			var checkboxBtn = document.getElementsByClassName('checkboxBtn');
 			if(checkboxBtn[index].checked){
-				this.items.splice(index,1);
-				//checkboxBtn[index].checked = false;
-				//delet_btn[index].style.display = 'none';
+				this.items.splice(index,1);   // 删除当前选项
 				if(index > 0){
 					var indexDif = index - 0;
 					for(var j=0;j<indexDif;j++){
 						if(checkboxBtn[j].checked){
-							checkboxBtn[j].checked = true
-							delet_btn[j].style.display = 'block'
+							checkboxBtn[j].checked = true;
+							delet_btn[j].style.display = 'block';
 						}else if(!checkboxBtn[j].checked){
 							checkboxBtn[j].checked = false;
-							delet_btn[j].style.display = 'none'
+							delet_btn[j].style.display = 'none';
 						}						
 					}
 					for(var i=index;i<checkboxBtn.length-index;i++){
 						if(checkboxBtn[i].checked){
-							console.log(1)
-							checkboxBtn[i].checked = true;
-							delet_btn[i].style.display = 'block';
+							console.log(i)
+							checkboxBtn[i].checked = false;
+							delet_btn[i].style.display = 'none';
 							checkboxBtn[index+1].checked = false;
 							delet_btn[index+1].style.display = 'none';
 						}else if(!checkboxBtn[i].checked){
-							console.log(11)
+							//console.log(11)
 							checkboxBtn[index].checked = false;
 							delet_btn[index].style.display = 'none';
 						}

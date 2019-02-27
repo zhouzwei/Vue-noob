@@ -69,10 +69,10 @@ export default{
 	data(){
 		return{
 			showBox:false,
-			checkAllFlage:false,
-			totalPrice:0,
-			totalCount:0,
-			curProduct:'',
+			checkAllFlage:false,  // 是否全选
+			totalPrice:0,      // 总价格
+			totalCount:0,     // 总数量
+			curProduct:'',    // 当前商品
 			goodsList:[
 				{
 					goodsImg:require('../assets/images/index/shangjialianmeng-icon04.png'),
@@ -106,44 +106,41 @@ export default{
 	},
 	methods:{
 		
-		deletBtn(goods){
+		deletBtn(goods){  // 删除单个商品按钮
 			this.showBox = true;
 			this.curProduct = goods;
 		},
 		deletBtnBox(way){  // 删除弹窗 再次确定是否要删除
 			var index = this.goodsList.indexOf(this.curProduct);
-			if(way>0){
+			if(way>0){   // 确定删除
 				//this.goodsList[index].checked = false
 				this.goodsList.splice(index,1);
 				this.showBox = false;
-				//console.log(1)
-			}else{
+			}else{   // 取消删除
 				this.showBox = false;
-				//console.log(-1)
 			}
 			this.calculatePrice();
 		},
-		// 增加 减少物品数量时 总价格
+		// 增加 减少物品数量时   商品总价格
 		goodsMoney(product,way){
 			if(way>0){   // 加号
-				product.goodsNum++
+				product.goodsNum++;
 			}else{   // 减号
-				product.goodsNum--
+				product.goodsNum--;
 				if(product.goodsNum<1){
-					product.goodsNum = 1
+					product.goodsNum = 1;
 				}
 			}
 			this.calculatePrice();
 		},
 		// 选择商品按钮
 		selectProduct(goods){
-			console.log(goods)
 			this.calculatePrice();
 		},
 		// 全选按钮
 		checkAll(){
-			var goodsIpt = document.getElementsByClassName('goods_ipt')
-			this.checkAllFlage = !this.checkAllFlage
+			var goodsIpt = document.getElementsByClassName('goods_ipt');
+			this.checkAllFlage = !this.checkAllFlage;    //  是否已经点击了全选按钮
 			for(var i=0;i<goodsIpt.length;i++){
 				if(this.checkAllFlage){
 					goodsIpt[i].checked = true;
@@ -155,12 +152,11 @@ export default{
 		},
 		// 计算总价
 		calculatePrice(){
-			var goodsIpt = document.getElementsByClassName('goods_ipt')
+			var goodsIpt = document.getElementsByClassName('goods_ipt');
 			this.totalPrice = 0;
 			this.totalCount= 0;
 			for(var i=0;i<goodsIpt.length;i++){
 				if(goodsIpt[i].checked){
-					//console.log(this.goodsList.length)
 					this.totalPrice += Math.round((this.goodsList[i].goodsNum * this.goodsList[i].goodsPrice)*100)/100;
 					this.totalCount += parseInt(this.goodsList[i].goodsNum); 
 				}

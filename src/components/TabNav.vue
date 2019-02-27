@@ -62,7 +62,7 @@ export default{
 					pathed:'TabItem1',
 					lists:[
 						{
-							listTxt:'音乐播放器',    //MusicPlay
+							listTxt:'音乐播放器',    // MusicPlay
 							pathed:'MusicPlay'
 						},
 						{
@@ -108,7 +108,8 @@ export default{
 	},
 	methods:{
 		listClick(index){
-			this.current = index
+			alert(index)
+			console.log(this.current)
 		}
 	}
 }

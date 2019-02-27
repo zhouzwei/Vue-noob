@@ -16,7 +16,7 @@
 			<section class="current_city_title">当前城市</section>
 			<section class="current_city">{{currentCity}}</section>
 		</section>
-		<!-- 历史选择城市  -->
+		<!-- 历史访问城市  -->
 		<section class="history_city_box">
 			<section class="history_city_title">历史访问城市</section>
 			<section class="history_city">
@@ -80,11 +80,11 @@ export default{
 			currentCity:'广州',
 			showCitys:false,
 			searchInput:'',
-			citys:[
+			citys:[   // 所有城市集合
 				
 			],
-			historyCitys:[],
-			hotCitys:[
+			historyCitys:[],   // 历史访问城市
+			hotCitys:[         // 热门城市
 				{hotCityTxt:'北京'},
 				{hotCityTxt:'上海'},
 				{hotCityTxt:'广州'},

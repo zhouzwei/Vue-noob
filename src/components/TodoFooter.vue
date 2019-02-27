@@ -43,6 +43,7 @@ export default{
 	methods:{
 		ToggleNav(nav,index){
 			this.currentIndex = index;
+			//console.log(nav)
 			this.$emit('FooterNav',nav);
 		}
 	}
