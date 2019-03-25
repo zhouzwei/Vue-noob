@@ -68,9 +68,10 @@ export default{
 	  		})
 		},
 		delList(id){
-			var index = this.todos.findIndex(function(todo){
-	  			return todo.id === id;
-	  		})
+        var index = this.todos.findIndex(todo=>todo.id===id);
+			  //var index = this.todos.findIndex(function(todo){
+	  			//return todo.id === id;
+	  		//})
 	  		this.todos.splice(index,1);
 		},
 		ToggleFooterNav(nav){
